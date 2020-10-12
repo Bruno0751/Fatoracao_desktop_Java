@@ -1,48 +1,49 @@
 //Fatorial
 package br.com.web.view;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+import model.User;
 /**
  * @author Bruno Gressler da Silveira
- * @version 1
+ * @version 2
+ * @since 11/10/20
  */
 public class Main {
     public static void main(String[] args) {
         Scanner leia = new Scanner(System.in);
         
+        User objUser = new User();
+        
         int fatorial;
 	int resposta = 1;
-        byte op;
+        
         
 	do{
-            System.out.print("0 --- Sair\n"
+            objUser.setOp(Byte.parseByte(JOptionPane.showInputDialog(null, "0 --- Sair\n"
                     + "1 --- Calculadora de Fatorial\n\n"
-                    + "Digite a Opção: ");
-            op = leia.nextByte();
-            switch(op){
+                    + "Digite a Opção: ")));
+            
+            switch(objUser.getOp()){
                 case 0:
-                    Tela.limparTela();
-                    System.out.println("Sistema Encerrado");
+                    JOptionPane.showMessageDialog(null, "Sistema Encerrado");
                     System.exit(0);
                 break;
                 case 1:
-                    Tela.limparTela();
-                    System.out.print("Digite o Número a Ser Fatorado: ");
-                    fatorial = leia.nextInt();
+                    fatorial = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o Número a Ser Fatorado: "));
 
                     for( ; fatorial >= 1; --fatorial){
                             resposta *= fatorial;
                     }
 
-                    System.out.println("O Fatorial é: " + resposta + "\n\n");
+                    JOptionPane.showMessageDialog(null, "O Fatorial é: " + resposta + "\n\n");
                     
                 break;
                 default:
-                    Tela.limparTela();
-                    System.out.println("Opção Inválida");
+                    JOptionPane.showMessageDialog(null, "Opção Inválida");
                 break;
             }
             
-        }while(op != 0);
+        }while(objUser.getOp() != 0);
         
     }  
 }
